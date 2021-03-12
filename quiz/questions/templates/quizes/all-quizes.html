@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="mt-3 container">
+        <div class="row">
+            {% for quiz in quizes %}
+
+            <div class="col">
+                <div class="card shadow">
+                    <img class="card-img-top" height="200"
+                        src="https://dummyimage.com/600x400/99e8e7/090f0c.png&text={{quiz.title}}" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">{{quiz.title}}</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid aut sunt
+                        </p>
+                    </div>
+                    <div class="card-footer p-0 m-0">
+                        <a class="btn btn-dark border m-0 col-12" href="/quiz/{{quiz.id}}">Start Quiz</a>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+
+</html>
