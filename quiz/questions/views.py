@@ -1,7 +1,11 @@
-from django.shortcuts import render , HttpResponse
+from django.shortcuts import render , HttpResponse , redirect
 from .models import Quiz , CorrectAnswer , Question
+from django.contrib.auth.forms import AuthenticationForm , UserCreationForm 
+from django.contrib.auth import authenticate , login , logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required(login_url='/accounts/login')
 def home(request):
     quizes = Quiz.objects.all()
     context = {
@@ -9,6 +13,46 @@ def home(request):
     }
     return render(request , template_name='quizes/all-quizes.html' , context=context  )
 
+
+def loginView(request):
+    form = AuthenticationForm()
+    if request.method == 'POST':
+        form = AuthenticationForm(data = request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request=request , username=username , password=password)
+            print(user)
+            if user is not None:
+                login(request , user)
+                return redirect('home')
+        
+
+    # if get Request
+    context = {
+        'form' : form
+    }
+    return render(request , template_name='auth/login.html' , context=context )
+
+def register(request):
+    form = UserCreationForm()
+    
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+
+    
+    
+    context = {
+        'form' : form
+    }
+    return render(request , template_name='auth/register.html' , context=context )
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
 
 def quizPage(request , quizid):
     quiz = Quiz.objects.get(id=quizid)
