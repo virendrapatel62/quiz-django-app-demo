@@ -104,10 +104,14 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+from django.utils import dateparse 
+print(dateparse.parse_datetime('2021-03-14 15:49:40.922274+00:00'))

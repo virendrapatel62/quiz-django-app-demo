@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from datetime import datetime
 # Create your models here.
 
 class Quiz(models.Model):
@@ -31,7 +31,8 @@ class CorrectAnswer(models.Model):
 class UserQuiz(models.Model):
     quiz=models.ForeignKey(Quiz , on_delete=models.CASCADE)
     user=models.ForeignKey(User , on_delete=models.CASCADE)
-    time=models.DateTimeField(auto_now_add=True)
+    start_time=models.DateTimeField(default=datetime.now)
+    end_time=models.DateTimeField(default=datetime.now)
     right_answers = models.IntegerField(default=0)
     wrong_answers = models.IntegerField(default=0)
 

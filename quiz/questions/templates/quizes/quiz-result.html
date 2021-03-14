@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{%block content%}
+<div class="container">
+    <br>
+    <br>
+
+
+    <h1>Hi, {{result.user.username}}</h1>
+    <h4>Here is Your Result</h4>
+    <hr>
+    <p><b>Time Take :</b> {{time_taken}}</p>
+    <hr>
+    <div class="row text-center text-light">
+        <div class="col p-2">
+            <div class="bg-success p-4 rounded">
+                <p>Right Answers</p>
+                <h1 class="display-3 ">{{result.right_answers}}</h1>
+            </div>
+        </div>
+        <div class="col p-2">
+            <div class="bg-danger p-4  rounded">
+                <p>Wrong Answers</p>
+                <h1 class="display-3">{{result.wrong_answers}}</h1>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{%endblock%}

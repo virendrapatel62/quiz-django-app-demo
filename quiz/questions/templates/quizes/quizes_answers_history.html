@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% load mytags %}
+{%block content%}
+<div class="container">
+    <br>
+
+
+    <h4>Here is Your Questions wise History</h4>
+    {{user_quiz.start_time}}
+    <hr>
+    {%for question in user_quiz.quiz.question_set.all%}
+
+    <div class="card mt-4 style=" width: 18rem;">
+        <div class="card-header">
+            <b>{{question.question}}</b>
+        </div>
+        <ul class="list-group list-group-flush">
+
+            {% is_right_answer question user_quiz.quiz 'A' as res %}
+            <li class="list-group-item {{res}}">
+                {{question.a}}
+            </li>
+            {% is_right_answer question user_quiz.quiz 'B' as res %}
+            <li class="list-group-item {{res}}">
+                {{question.b}}
+            </li>
+            {% is_right_answer question user_quiz.quiz 'C' as res %}
+            <li class="list-group-item {{res}}">
+                {{question.c}}
+            </li>
+            {% is_right_answer question user_quiz.quiz 'D' as res %}
+            <li class="list-group-item {{res}}">
+                {{question.d}}
+            </li>
+
+        </ul>
+    </div>
+
+    {% endfor %}
+    <br>
+    <br>
+    <br>
+</div>
+{%endblock%}

@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{%block content%}
+<div class="container">
+    <br>
+    <br>
+
+
+    <h1>Hi, {{user}}</h1>
+    <h4>Here is Your Attemped Quiz</h4>
+
+    <br>
+
+    {% if not userQuizes %}
+    <div class="alert alert-light border p-4 m4">
+        <p class="display-4">No Quizes</p>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        {% for uq in userQuizes %}
+        <div class="col-3 mx-auto mt-3">
+            <div class="card m-2">
+                <img class="card-img-top m-2" height="200"
+                    src="https://www.flaticon.com/svg/vstatic/svg/3406/3406828.svg?token=exp=1615701579~hmac=2a3a37cc30c1aee34d02665b584875fc"
+                    alt="">
+                <hr class="p-0 m-0">
+                <div class="card-body">
+                    <h5 class="card-title">{{uq.quiz.title}}</h5>
+                    <a href="quizes/{{uq.id}}" class="btn btn-dark btn-sm">Show More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+</div>
+{%endblock%}
